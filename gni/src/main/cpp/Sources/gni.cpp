@@ -135,40 +135,35 @@ gni::GniCore::Convert(jobject rhs) const
     return gni::Object(rhs);
 }
 
+#define ANDROID_LOG_VPRINT(level, tag, fmt...) do { \
+    va_list ap; \
+    va_start(ap, fmt); \
+    __android_log_vprint(level, tag, fmt, ap); \
+    va_end(ap); \
+} while(false); 
+
 void
 gni::common::LogD(const char* tag, const char* format, ...)
 {
-    va_list ap;
-    va_start(ap, format);
-    __android_log_vprint(0, tag, format, ap);
-    va_end(ap);
+    ANDROID_LOG_VPRINT(ANDROID_LOG_DEBUG, tag, format);
 }
 
 void
 gni::common::LogI(const char* tag, const char* format, ...)
 {
-    va_list ap;
-    va_start(ap, format);
-    __android_log_vprint(0, tag, format, ap);
-    va_end(ap);
+    ANDROID_LOG_VPRINT(ANDROID_LOG_INFO, tag, format);
 }
 
 void
 gni::common::LogW(const char* tag, const char* format, ...)
 {
-    va_list ap;
-    va_start(ap, format);
-    __android_log_vprint(0, tag, format, ap);
-    va_end(ap);
+    ANDROID_LOG_VPRINT(ANDROID_LOG_WARN, tag, format);
 }
 
 void
 gni::common::LogE(const char* tag, const char* format, ...)
 {
-    va_list ap;
-    va_start(ap, format);
-    __android_log_vprint(0, tag, format, ap);
-    va_end(ap);
+    ANDROID_LOG_VPRINT(ANDROID_LOG_ERROR, tag, format);
 }
 
 }; // namespace gni
