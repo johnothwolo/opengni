@@ -21,7 +21,8 @@ add_library(${CMAKE_PROJECT_NAME} SHARED
     Sources/interface_proxy_helper.cpp
     Sources/jni_boxed_type_util.cpp)
 
-include_directories(Headers)
+include_directories(Headers/Public)
+include_directories(Headers/Private)
 include_directories(Sources)
 
 # Specifies libraries CMake should link to your target library. You
